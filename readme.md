@@ -1,5 +1,8 @@
 # Pope
 
+![](https://img.shields.io/travis/poppinss/pope.svg)
+[![Coverage Status](https://coveralls.io/repos/poppinss/pope/badge.svg?branch=master&service=github)](https://coveralls.io/github/poppinss/pope?branch=master)
+
 Pope is a fast, minimal and micro templating engine for strings only, it plays well where you want to embed micro templates inside your module.
 
 ## Examples
