@@ -26,5 +26,16 @@
   },
   "dependencies": {
     "npmlog": "^2.0.0"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/poppinss/pope.git"
+  },
+  "bugs": {
+    "url": "https://github.com/poppinss/pope/issues"
+  },
+  "homepage": "https://github.com/poppinss/pope#readme"
 }
