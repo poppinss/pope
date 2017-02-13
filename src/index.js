@@ -6,8 +6,6 @@
  * MIT Licensed
 */
 
-const log = require('npmlog')
-
 /**
  * @description get nested properties from a given
  * object using dot notation
@@ -33,7 +31,7 @@ const prop = function(obj, path) {
 }
 
 /**
- * @description parses a given template string and 
+ * @description parses a given template string and
  * replace dynamic placeholders with actual data
  * @method pope
  * @param  {String} string
@@ -50,8 +48,7 @@ const pope = function (string, data) {
     if(item) {
       const value = prop(data, item) || null
       if(!value){
-        log.warn(item + ' not found in data object')
-        formattedString = formattedString.replace(result[0], '')        
+        formattedString = formattedString.replace(result[0], '')
       }else{
         formattedString = formattedString.replace(result[0], value)
       }
