@@ -15,7 +15,7 @@
  * @return {Mixed}
  * @public
  */
-const prop = function(obj, path) {
+var prop = function(obj, path) {
   if (typeof(obj) !== 'object' || typeof path !== 'string') {
     return obj;
   }
@@ -39,14 +39,14 @@ const prop = function(obj, path) {
  * @return {String}
  * @public
  */
-const pope = function (string, data) {
-  const regex = /\{\{([a-z0-9\.\s*]+)\}\}/gi
-  let result
-  let formattedString = string
+var pope = function (string, data) {
+  var regex = /\{\{([a-z0-9\.\s*]+)\}\}/gi
+  var result
+  var formattedString = string
   while (result = regex.exec(string)){
-    let item = result[1].trim()
+    var item = result[1].trim()
     if(item) {
-      const value = prop(data, item) || null
+      var value = prop(data, item) || null
       if(!value){
         formattedString = formattedString.replace(result[0], '')
       }else{
