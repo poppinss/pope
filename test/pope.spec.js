@@ -98,4 +98,10 @@ describe('pope', function   () {
   it('work fine with nested values', function () {
     expect(pope("Hello {{ user.username }}", { user: { username: 'virk' } })).to.equal('Hello virk')
   })
+
+  it('should replace a value whose value is zero', function () {
+    const template = pope("Zero value {{index}}", {index: 0})
+    expect(template).to.equal('Zero value 0')
+  })
+
 })
