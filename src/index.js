@@ -39,18 +39,19 @@ var prop = function(obj, path) {
  * @return {String}
  * @public
  */
-var pope = function (string, data) {
-  var regex = /\{\{([\w\$\s]+)\}\}/gi
+var pope = function (string, data, options) {
+  options = options || { skipUndefined: false }
+  var regex = /\{{2}([\w\$\s]+)\}{2}/gi
   var result
   var formattedString = string
   while (result = regex.exec(string)){
     var item = result[1].trim()
     if(item) {
       var value = prop(data, item) || null
-      if(!value){
-        formattedString = formattedString.replace(result[0], '')
-      }else{
+      if (value) {
         formattedString = formattedString.replace(result[0], value)
+      } else if (!options.skipUndefined) {
+        formattedString = formattedString.replace(result[0], '')
       }
     }
   }

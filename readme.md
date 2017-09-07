@@ -27,6 +27,23 @@ const pope = require('pope')
 pope('There are {{0}} emails in your inbox', [20])
 ```
 
+## Options
+
+You can also pass an options object, which takes only one param for now and that is `skipUndefined`. 
+
+If `skipUndefined` is set to true, all unfound variables will be untouched, whereas originally they get replaced with an empty string.
+
+```javascript
+const pope = require('pope')
+pope('There are {{0}} emails in your inbox', {}, {
+  skipUndefined: true
+})
+
+// returns - There are {{0}} emails in your inbox
+```
+
+
+
 ## The MIT License
 
 Copyright (c) 2015 Harminder Virk

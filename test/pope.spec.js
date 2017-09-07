@@ -68,4 +68,8 @@ describe('pope', function   () {
     expect(pope("Hello {{ user_name }}", { user_name: 'virk' }).trim()).to.equal('Hello virk')
     expect(pope("Hello {{ $user_name }}", { '$user_name': 'virk' }).trim()).to.equal('Hello virk')
   })
+
+  it('skip undefined', function () {
+    expect(pope("Hello {{ user_name }}", {}, { skipUndefined: true }).trim()).to.equal('Hello {{ user_name }}')
+  })
 })
