@@ -3,7 +3,7 @@
 ![](https://img.shields.io/travis/poppinss/pope.svg)
 [![Coverage Status](https://coveralls.io/repos/poppinss/pope/badge.svg?branch=master&service=github)](https://coveralls.io/github/poppinss/pope?branch=master)
 
-Pope is a fast, minimal and micro templating engine for strings only, it plays well where you want to embed micro templates inside your module.
+Pope is a fast, minimal and micro template engine for strings only, it plays well where you want to embed micro templates inside your module.
 
 ## Examples
 
@@ -29,17 +29,38 @@ pope('There are {{0}} emails in your inbox', [20])
 
 ## Options
 
-You can also pass an options object, which takes only one param for now and that is `skipUndefined`. 
+You can also pass an options object to define the interpolation behavior.
 
-If `skipUndefined` is set to true, all unfound variables will be untouched, whereas originally they get replaced with an empty string.
+#### skipUndefined
+Do not replace the undefined values with an empty string.
 
 ```javascript
 const pope = require('pope')
 pope('There are {{0}} emails in your inbox', {}, {
   skipUndefined: true
 })
-
 // returns - There are {{0}} emails in your inbox
+```
+
+#### throwOnUndefined
+Throw exception when a undefined value is found. `throwOnUndefined` gets priority over `skipUndefined` if both are defined.
+
+```javascript
+const pope = require('pope')
+pope('Hello {{ username }}', {}, {
+  throwOnUndefined: true
+})
+
+// throws exception
+```
+
+```js
+{ 
+  message: 'Missing value for {{ username }}',
+  key: 'username',
+  code: 'E_MISSING_KEY',
+  stack: '.....'
+}
 ```
 
 

@@ -40,7 +40,7 @@ var prop = function(obj, path) {
  * @public
  */
 var pope = function (string, data, options) {
-  options = options || { skipUndefined: false }
+  options = options || { skipUndefined: false, throwOnUndefined: false }
   var regex = /\{{2}([\w\$\s]+)\}{2}/gi
   var result
   var formattedString = string
@@ -50,6 +50,11 @@ var pope = function (string, data, options) {
       var value = prop(data, item) || null
       if (value) {
         formattedString = formattedString.replace(result[0], value)
+      } else if (options.throwOnUndefined) {
+        const error = new Error('Missing value for ' + result[0])
+        error.key = item
+        error.code = 'E_MISSING_KEY'
+        throw error
       } else if (!options.skipUndefined) {
         formattedString = formattedString.replace(result[0], '')
       }

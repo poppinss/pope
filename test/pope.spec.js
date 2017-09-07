@@ -72,4 +72,26 @@ describe('pope', function   () {
   it('skip undefined', function () {
     expect(pope("Hello {{ user_name }}", {}, { skipUndefined: true }).trim()).to.equal('Hello {{ user_name }}')
   })
+
+  it('throw exception on undefined', function () {
+    try {
+      pope("Hello {{ user_name }}", {}, { throwOnUndefined: true })
+      expect(true).to.equal(false)
+    } catch (error) {
+      expect(error.message).to.equal('Missing value for {{ user_name }}')
+      expect(error.code).to.equal('E_MISSING_KEY')
+      expect(error.key).to.equal('user_name')
+    }
+  })
+
+  it('give priority to throwOnUndefined over skipUndefined', function () {
+    try {
+      pope("Hello {{ user_name }}", {}, { throwOnUndefined: true, skipUndefined: true })
+      expect(true).to.equal(false)
+    } catch (error) {
+      expect(error.message).to.equal('Missing value for {{ user_name }}')
+      expect(error.code).to.equal('E_MISSING_KEY')
+      expect(error.key).to.equal('user_name')
+    }
+  })
 })
