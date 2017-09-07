@@ -40,7 +40,7 @@ var prop = function(obj, path) {
  * @public
  */
 var pope = function (string, data) {
-  var regex = /\{\{([a-z0-9\.\s*]+)\}\}/gi
+  var regex = /\{\{([\w\$\s]+)\}\}/gi
   var result
   var formattedString = string
   while (result = regex.exec(string)){

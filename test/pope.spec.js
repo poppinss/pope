@@ -64,4 +64,8 @@ describe('pope', function   () {
     expect(template.trim()).to.equal('Hello world')
   })
 
+  it('work fine when has special chars in placeholders', function () {
+    expect(pope("Hello {{ user_name }}", { user_name: 'virk' }).trim()).to.equal('Hello virk')
+    expect(pope("Hello {{ $user_name }}", { '$user_name': 'virk' }).trim()).to.equal('Hello virk')
+  })
 })
