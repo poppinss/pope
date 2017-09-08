@@ -41,7 +41,7 @@ var prop = function(obj, path) {
  */
 var pope = function (string, data, options) {
   options = options || { skipUndefined: false, throwOnUndefined: false }
-  var regex = /\{{2}([\w\$\s]+)\}{2}/gi
+  var regex = /{{2}(.+?)}{2}/g
   var result
   var formattedString = string
   while (result = regex.exec(string)){

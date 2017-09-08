@@ -94,4 +94,8 @@ describe('pope', function   () {
       expect(error.key).to.equal('user_name')
     }
   })
+
+  it('work fine with nested values', function () {
+    expect(pope("Hello {{ user.username }}", { user: { username: 'virk' } })).to.equal('Hello virk')
+  })
 })
