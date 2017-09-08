@@ -1,6 +1,6 @@
 {
   "name": "pope",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Micro templating engine for strings only.",
   "main": "index.js",
   "scripts": {
