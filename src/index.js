@@ -47,8 +47,8 @@ var pope = function (string, data, options) {
   while (result = regex.exec(string)){
     var item = result[1].trim()
     if(item) {
-      var value = prop(item, data) || null
-      if (value) {
+      var value = prop(item, data)
+      if (value !== undefined && value !== null) {
         formattedString = formattedString.replace(result[0], value)
       } else if (options.throwOnUndefined) {
         const error = new Error('Missing value for ' + result[0])
