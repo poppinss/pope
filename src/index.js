@@ -10,12 +10,12 @@
  * @description get nested properties from a given
  * object using dot notation
  * @method prop
- * @param  {Object} obj
  * @param  {String} path
+ * @param  {Object} obj
  * @return {Mixed}
  * @public
  */
-var prop = function(obj, path) {
+var prop = function(path, obj) {
   if (typeof(obj) !== 'object' || typeof path !== 'string') {
     return obj;
   }
@@ -47,7 +47,7 @@ var pope = function (string, data, options) {
   while (result = regex.exec(string)){
     var item = result[1].trim()
     if(item) {
-      var value = prop(data, item) || null
+      var value = prop(item, data) || null
       if (value) {
         formattedString = formattedString.replace(result[0], value)
       } else if (options.throwOnUndefined) {
