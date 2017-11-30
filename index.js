@@ -6,4 +6,9 @@
  * MIT Licensed
 */
 
-module.exports = require('./src/index').pope
+const funcs = require('./src/index');
+var lib = funcs.pope;
+lib.pope = funcs.pope;
+lib.prop = funcs.prop;
+const api = lib;
+module.exports = api;
