@@ -6,9 +6,7 @@
  * MIT Licensed
 */
 
-const funcs = require('./src/index');
-var lib = funcs.pope;
-lib.pope = funcs.pope;
-lib.prop = funcs.prop;
-const api = lib;
-module.exports = api;
+var funcs = require('./src/index')
+
+exports = module.exports = funcs.pope
+exports.prop = funcs.prop

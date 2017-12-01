@@ -51,7 +51,7 @@ var pope = function (string, data, options) {
       if (value !== undefined && value !== null) {
         formattedString = formattedString.replace(result[0], value)
       } else if (options.throwOnUndefined) {
-        const error = new Error('Missing value for ' + result[0])
+        var error = new Error('Missing value for ' + result[0])
         error.key = item
         error.code = 'E_MISSING_KEY'
         throw error

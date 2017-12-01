@@ -27,6 +27,18 @@ const pope = require('pope')
 pope('There are {{0}} emails in your inbox', [20])
 ```
 
+### prop
+
+If you wish to retrieve values from a nested data structure without interpolating into a string, you can make use of `prop`. Note the missing `{{}}`.
+
+```javascript
+const pope = require('pope')
+pope.prop('count',{count:20}) // 20
+pope.prop('profile.name',{profile: {name:'virk', age: 26}}) // virk
+pope.prop('0', [20]) // 20
+pope.prop('profile.validate',{profile: {name:'virk', validate: /^[A-Z][a-z]+/}}) //   /^[A-Z][a-z]+/
+```
+
 ## Options
 
 You can also pass an options object to define the interpolation behavior.
@@ -62,6 +74,7 @@ pope('Hello {{ username }}', {}, {
   stack: '.....'
 }
 ```
+
 
 
 
