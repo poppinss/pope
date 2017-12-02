@@ -2,7 +2,9 @@
   "name": "pope",
   "version": "1.0.5",
   "description": "Zero dependency micro templating engine for strings only.",
-  "main": "index.js",
+  "main": "dist/pope.js",
+  "module": "dist/pope.es.js",
+  "browser": "dist/pope.browser.js",
   "scripts": {
     "lint": "standard",
     "pretest": "npm run lint",
@@ -22,7 +24,10 @@
     "coveralls": "^2.11.4",
     "japa": "^1.0.5",
     "japa-cli": "^1.0.1",
-    "standard": "^10.0.3"
+    "rollup": "^0.52.0",
+    "rollup-plugin-uglify": "^2.0.1",
+    "standard": "^10.0.3",
+    "uglify-es": "^3.2.0"
   },
   "directories": {
     "test": "test"
