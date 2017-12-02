@@ -29,6 +29,11 @@ test.group('pope', function () {
     assert.equal(name, 'nikk')
   })
 
+  test('should return object when path points to an object over literal value', (assert) => {
+    const profile = prop({ user: { profile: { username: 'virk' } } }, 'user.profile')
+    assert.deepEqual(profile, { username: 'virk' })
+  })
+
   test('should parse a template and replace mustache like placeholders', (assert) => {
     const template = pope('Hello {{name}}', {name: 'virk'})
     assert.equal(template, 'Hello virk')
