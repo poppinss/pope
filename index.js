@@ -6,4 +6,7 @@
  * MIT Licensed
 */
 
-module.exports = require('./src/index').pope
+var funcs = require('./src/index')
+
+exports = module.exports = funcs.pope
+exports.prop = funcs.prop

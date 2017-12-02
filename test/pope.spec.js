@@ -15,17 +15,17 @@ const expect = chai.expect
 describe('pope', function   () {
 
   it('should fetch properties from a given object', function () {
-    const name = prop({name:'virk'},'name')
+    const name = prop('name', {name:'virk'})
     expect(name).to.equal('virk')
   })
 
   it('should fetch nested properties from a given object', function () {
-    const name = prop({profile: {name:'virk'}},'profile.name')
+    const name = prop('profile.name', {profile: {name:'virk'}})
     expect(name).to.equal('virk')
   })
 
   it('should fetch nested properties from a given object using array index', function () {
-    const name = prop({users:['virk','nikk']},'users.1')
+    const name = prop('users.1', {users:['virk','nikk']})
     expect(name).to.equal('nikk')
   })
 
