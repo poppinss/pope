@@ -1,3 +1,9 @@
+<a name="2.0.0"></a>
+# 2.0.0 (2017-12-02)
+
+## Breaking changes
+* The version has a breaking change, read the README.md file for that.
+
 <a name="1.0.5"></a>
 ## 1.0.5 (2017-12-02)
 
