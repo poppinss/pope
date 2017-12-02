@@ -1,9 +1,22 @@
 'use strict'
 
-/**
- * pope
- * Copyright(c) 2015-2015 Harminder Virk
- * MIT Licensed
+/*
+* pope
+*
+* (c) Harminder Virk <virk@adonisjs.com>
+*
+* For the full copyright and license information, please view the LICENSE
+* file that was distributed with this source code.
+*/
+
+/*
+|--------------------------------------------------------------------------
+| ES5
+|--------------------------------------------------------------------------
+|
+| Since I want this module to work as it is in browsers, I have used the
+| possible plain Javascript
+|
 */
 
 /**
@@ -17,19 +30,19 @@
  *
  * @return {Mixed}
  */
-var prop = function(obj, path) {
-  if (typeof(obj) !== 'object' || typeof path !== 'string') {
-    return obj;
+var prop = function (obj, path) {
+  if (typeof (obj) !== 'object' || typeof path !== 'string') {
+    return obj
   }
-  var pathArr = path.split('.');
+  var pathArr = path.split('.')
   for (var i = 0; i < pathArr.length; i++) {
-    var p = pathArr[i];
-    obj = obj.hasOwnProperty(p) ? obj[p] : null;
+    var p = pathArr[i]
+    obj = obj.hasOwnProperty(p) ? obj[p] : null
     if (obj === null) {
-      break;
+      break
     }
   }
-  return obj;
+  return obj
 }
 
 /**
@@ -45,12 +58,14 @@ var prop = function(obj, path) {
  */
 var pope = function (string, data, options) {
   options = options || { skipUndefined: false, throwOnUndefined: false }
+
   var regex = /{{2}(.+?)}{2}/g
   var result
   var formattedString = string
-  while (result = regex.exec(string)){
+
+  while ((result = regex.exec(string)) !== null) {
     var item = result[1].trim()
-    if(item) {
+    if (item) {
       var value = prop(data, item)
       if (value !== undefined && value !== null) {
         formattedString = formattedString.replace(result[0], value)
