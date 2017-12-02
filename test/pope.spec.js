@@ -10,8 +10,7 @@
 */
 
 const test = require('japa')
-const pope = require('..')
-const prop = pope.prop
+const { pope, prop } = require('../dist/pope')
 
 test.group('pope', function () {
   test('should fetch properties from a given object', (assert) => {
