@@ -9,13 +9,15 @@
 /**
  * @description get nested properties from a given
  * object using dot notation
+ *
  * @method prop
- * @param  {String} path
+ *
  * @param  {Object} obj
+ * @param  {String} path
+ *
  * @return {Mixed}
- * @public
  */
-var prop = function(path, obj) {
+var prop = function(obj, path) {
   if (typeof(obj) !== 'object' || typeof path !== 'string') {
     return obj;
   }
@@ -32,12 +34,14 @@ var prop = function(path, obj) {
 
 /**
  * @description parses a given template string and
- * replace dynamic placeholders with actual data
+ * replace dynamic placeholders with actual data.
+ *
  * @method pope
+ *
  * @param  {String} string
  * @param  {Object} data
+ *
  * @return {String}
- * @public
  */
 var pope = function (string, data, options) {
   options = options || { skipUndefined: false, throwOnUndefined: false }
@@ -47,7 +51,7 @@ var pope = function (string, data, options) {
   while (result = regex.exec(string)){
     var item = result[1].trim()
     if(item) {
-      var value = prop(item, data)
+      var value = prop(data, item)
       if (value !== undefined && value !== null) {
         formattedString = formattedString.replace(result[0], value)
       } else if (options.throwOnUndefined) {

@@ -6,26 +6,25 @@
  * MIT Licensed
 */
 
-const format = require('../src/index')
-const pope = format.pope
-const prop = format.prop
+const pope = require('..')
+const prop = pope.prop
 const chai = require('chai')
 const expect = chai.expect
 
 describe('pope', function   () {
 
   it('should fetch properties from a given object', function () {
-    const name = prop('name', {name:'virk'})
+    const name = prop({name:'virk'}, 'name')
     expect(name).to.equal('virk')
   })
 
   it('should fetch nested properties from a given object', function () {
-    const name = prop('profile.name', {profile: {name:'virk'}})
+    const name = prop({profile: {name:'virk'}}, 'profile.name')
     expect(name).to.equal('virk')
   })
 
   it('should fetch nested properties from a given object using array index', function () {
-    const name = prop('users.1', {users:['virk','nikk']})
+    const name = prop({users:['virk','nikk']}, 'users.1')
     expect(name).to.equal('nikk')
   })
 
