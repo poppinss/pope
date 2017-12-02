@@ -1,106 +1,107 @@
 'use strict'
 
-/**
- * pope
- * Copyright(c) 2015-2015 Harminder Virk
- * MIT Licensed
+/*
+* pope
+*
+* (c) Harminder Virk <virk@adonisjs.com>
+*
+* For the full copyright and license information, please view the LICENSE
+* file that was distributed with this source code.
 */
 
+const test = require('japa')
 const pope = require('..')
 const prop = pope.prop
-const chai = require('chai')
-const expect = chai.expect
 
-describe('pope', function   () {
-
-  it('should fetch properties from a given object', function () {
+test.group('pope', function () {
+  test('should fetch properties from a given object', (assert) => {
     const name = prop({name:'virk'}, 'name')
-    expect(name).to.equal('virk')
+    assert.equal(name, 'virk')
   })
 
-  it('should fetch nested properties from a given object', function () {
+  test('should fetch nested properties from a given object', (assert) => {
     const name = prop({profile: {name:'virk'}}, 'profile.name')
-    expect(name).to.equal('virk')
+    assert.equal(name, 'virk')
   })
 
-  it('should fetch nested properties from a given object using array index', function () {
+  test('should fetch nested properties from a given object using array index', (assert) => {
     const name = prop({users:['virk','nikk']}, 'users.1')
-    expect(name).to.equal('nikk')
+    assert.equal(name, 'nikk')
   })
 
-  it('should parse a template and replace mustache like placeholders', function () {
+  test('should parse a template and replace mustache like placeholders', (assert) => {
     const template = pope("Hello {{name}}", {name:'virk'})
-    expect(template).to.equal('Hello virk')
+    assert.equal(template, 'Hello virk')
   })
 
-  it('should parse a template and replace multiple mustache like placeholders', function () {
+  test('should parse a template and replace multiple mustache like placeholders', (assert) => {
     const template = pope("Hello {{name}}, your age seems to be {{age}}", {name:'virk', age:22})
-    expect(template).to.equal('Hello virk, your age seems to be 22')
+    assert.equal(template, 'Hello virk, your age seems to be 22')
   })
 
-  it('should parse a template and ignore whitespaces inside placeholders', function () {
+  test('should parse a template and ignore whitespaces inside placeholders', (assert) => {
     const template = pope("Hello {{ name }}", {name:'virk'})
-    expect(template).to.equal('Hello virk')
+    assert.equal(template, 'Hello virk')
   })
 
-  it('should skip placeholders when values are missing', function () {
+  test('should skip placeholders when values are missing', (assert) => {
     const template = pope("Hello {{ name }}")
-    expect(template.trim()).to.equal('Hello')
+    assert.equal(template, 'Hello ')
   })
 
-  it('should replace array values at root level', function () {
+  test('should replace array values at root level', (assert) => {
     const template = pope("Hello {{ 0 }}", ['virk'])
-    expect(template.trim()).to.equal('Hello virk')
+    assert.equal(template.trim(), 'Hello virk')
   })
 
-  it('should not replace array keys', function () {
+  test('should not replace array keys', (assert) => {
     const template = pope("Function {{splice}}",[])
-    expect(template.trim()).to.equal('Function')
+    assert.equal(template.trim(), 'Function')
   })
 
-  it('should work fine when there is nothing to replace', function () {
+  test('should work fine when there is nothing to replace', (assert) => {
     const template = pope("Hello world")
-    expect(template.trim()).to.equal('Hello world')
+    assert.equal(template.trim(), 'Hello world')
   })
 
-  it('work fine when has special chars in placeholders', function () {
-    expect(pope("Hello {{ user_name }}", { user_name: 'virk' }).trim()).to.equal('Hello virk')
-    expect(pope("Hello {{ $user_name }}", { '$user_name': 'virk' }).trim()).to.equal('Hello virk')
+  test('work fine when has special chars in placeholders', (assert) => {
+    assert.equal(pope("Hello {{ user_name }}", { user_name: 'virk' }).trim(), 'Hello virk')
+    assert.equal(pope("Hello {{ $user_name }}", { '$user_name': 'virk' }).trim(), 'Hello virk')
   })
 
-  it('skip undefined', function () {
-    expect(pope("Hello {{ user_name }}", {}, { skipUndefined: true }).trim()).to.equal('Hello {{ user_name }}')
+  test('skip undefined', (assert) => {
+    const output = pope("Hello {{ user_name }}", {}, { skipUndefined: true }).trim()
+    assert.equal(output, 'Hello {{ user_name }}')
   })
 
-  it('throw exception on undefined', function () {
+  test('throw exception on undefined', (assert) => {
+    assert.plan(3)
     try {
       pope("Hello {{ user_name }}", {}, { throwOnUndefined: true })
-      expect(true).to.equal(false)
     } catch (error) {
-      expect(error.message).to.equal('Missing value for {{ user_name }}')
-      expect(error.code).to.equal('E_MISSING_KEY')
-      expect(error.key).to.equal('user_name')
+      assert.equal(error.message, 'Missing value for {{ user_name }}')
+      assert.equal(error.code, 'E_MISSING_KEY')
+      assert.equal(error.key, 'user_name')
     }
   })
 
-  it('give priority to throwOnUndefined over skipUndefined', function () {
+  test('give priority to throwOnUndefined over skipUndefined', (assert) => {
+    assert.plan(3)
     try {
       pope("Hello {{ user_name }}", {}, { throwOnUndefined: true, skipUndefined: true })
-      expect(true).to.equal(false)
     } catch (error) {
-      expect(error.message).to.equal('Missing value for {{ user_name }}')
-      expect(error.code).to.equal('E_MISSING_KEY')
-      expect(error.key).to.equal('user_name')
+      assert.equal(error.message, 'Missing value for {{ user_name }}')
+      assert.equal(error.code, 'E_MISSING_KEY')
+      assert.equal(error.key, 'user_name')
     }
   })
 
-  it('work fine with nested values', function () {
-    expect(pope("Hello {{ user.username }}", { user: { username: 'virk' } })).to.equal('Hello virk')
+  test('work fine with nested values', (assert) => {
+    assert.equal(pope("Hello {{ user.username }}", { user: { username: 'virk' } }), 'Hello virk')
   })
 
-  it('should replace a value whose value is zero', function () {
+  test('should replace a value whose value is zero', (assert) => {
     const template = pope("Zero value {{index}}", {index: 0})
-    expect(template).to.equal('Zero value 0')
+    assert.equal(template, 'Zero value 0')
   })
-
 })

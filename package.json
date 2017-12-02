@@ -18,11 +18,9 @@
   "author": "amanvirk",
   "license": "MIT",
   "devDependencies": {
-    "chai": "^3.4.1",
     "coveralls": "^2.11.4",
-    "istanbul": "^0.4.0",
-    "mocha": "^2.3.3",
-    "mocha-lcov-reporter": "^1.0.0"
+    "japa": "^1.0.5",
+    "japa-cli": "^1.0.1"
   },
   "directories": {
     "test": "test"
