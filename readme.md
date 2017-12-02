@@ -10,14 +10,14 @@ Pope is a fast, minimal and micro template engine for strings only, it plays wel
 ### string interpolation
 ```javascript
 const pope = require('pope')
-pope('There are {{count}} emails in your inbox', {count:20})
+pope('There are {{count}} emails in your inbox', { count:20 })
 ```
 
 ### nested values
 
 ```javascript
 const pope = require('pope')
-pope('My name is {{profile.name}} and age is {{profile.age}}', {profile: {name:'virk', age: 26}})
+pope('My name is {{profile.name}} and age is {{profile.age}}', { profile: { name:'virk', age: 26 } })
 ```
 
 ### arrays only
@@ -28,15 +28,14 @@ pope('There are {{0}} emails in your inbox', [20])
 ```
 
 ### prop
-
-If you wish to retrieve values from a nested data structure without interpolating into a string, you can make use of `prop`. Note the missing `{{}}`.
+Pulls the nested/flat values from an object. It is similar to `lodash.get` method.
 
 ```javascript
 const pope = require('pope')
-pope.prop('count',{count:20}) // 20
-pope.prop('profile.name',{profile: {name:'virk', age: 26}}) // virk
-pope.prop('0', [20]) // 20
-pope.prop('profile.validate',{profile: {name:'virk', validate: /^[A-Z][a-z]+/}}) //   /^[A-Z][a-z]+/
+pope.prop({ count:20 }, 'count') // 20
+pope.prop({profile: { name:'virk', age: 26 }}, 'profile.name') // virk
+pope.prop([20], '0') // 20
+pope.prop({profile: { validate: /^[A-Z][a-z]+/} }, 'profile.validate') //   /^[A-Z][a-z]+/
 ```
 
 ## Options
@@ -67,35 +66,10 @@ pope('Hello {{ username }}', {}, {
 ```
 
 ```js
-{ 
+{
   message: 'Missing value for {{ username }}',
   key: 'username',
   code: 'E_MISSING_KEY',
   stack: '.....'
 }
 ```
-
-
-
-
-## The MIT License
-
-Copyright (c) 2015 Harminder Virk
-
-Permission is hereby granted, free of charge, to any person obtaining a
-copy of this software and associated documentation files (the "Software"),
-to deal in the Software without restriction, including without limitation
-the rights to use, copy, modify, merge, publish, distribute, sublicense,
-and/or sell copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-DEALINGS IN THE SOFTWARE.
