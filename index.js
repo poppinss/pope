@@ -35,7 +35,7 @@ function isObj (obj) {
  * @return {Mixed}
  */
 function prop (obj, path) {
-  if (isObj(obj) || typeof path !== 'string') {
+  if (!isObj(obj) || typeof path !== 'string') {
     return obj
   }
   var pathArr = path.split('.')
