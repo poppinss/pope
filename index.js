@@ -19,6 +19,10 @@
 |
 */
 
+function isObj (obj) {
+  return obj !== null && typeof (obj) === 'object'
+}
+
 /**
  * @description get nested properties from a given
  * object using dot notation
@@ -31,7 +35,7 @@
  * @return {Mixed}
  */
 function prop (obj, path) {
-  if (typeof (obj) !== 'object' || typeof path !== 'string') {
+  if (isObj(obj) || typeof path !== 'string') {
     return obj
   }
   var pathArr = path.split('.')

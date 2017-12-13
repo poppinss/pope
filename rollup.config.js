@@ -6,7 +6,7 @@ export default {
   output: [
     {
       file: 'dist/pope.browser.js',
-      format: 'iife',
+      format: 'umd',
       name: 'pope'
     },
     {
