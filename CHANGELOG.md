@@ -1,3 +1,11 @@
+<a name="2.0.2"></a>
+## 2.0.2 (2017-12-13)
+
+
+### Bug Fixes
+
+* **prop:** last commit broke the package ([93e16b8](https://github.com/poppinss/pope/commit/93e16b8))
+
 <a name="2.0.1"></a>
 ## 2.0.1 (2017-12-13)
 
