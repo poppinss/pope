@@ -1,6 +1,6 @@
 {
   "name": "pope",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Zero dependency micro templating engine for strings only.",
   "main": "dist/pope.js",
   "module": "dist/pope.es.js",
