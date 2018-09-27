@@ -63,7 +63,7 @@ function prop (obj, path) {
 function pope (string, data, options) {
   options = options || { skipUndefined: false, throwOnUndefined: false }
 
-  var regex = /{{2}(.+?)}{2}/g
+  var regex = options.regex || /{{2}(.+?)}{2}/g;
   var result
   var formattedString = string
 
