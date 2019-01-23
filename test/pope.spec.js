@@ -108,4 +108,11 @@ test.group('pope', function () {
     const template = pope('Zero value {{index}}', {index: 0})
     assert.equal(template, 'Zero value 0')
   })
+
+  test('should work with objects with null prototype', (assert) => {
+    const obj = Object.create(null)
+    obj.value = 'test'
+    const template = pope('Value is {{value}}', obj)
+    assert.equal(template, 'Value is test')
+  })
 })
