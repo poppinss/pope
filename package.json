@@ -22,7 +22,7 @@
   "license": "MIT",
   "devDependencies": {
     "coveralls": "^2.11.4",
-    "japa": "^1.0.5",
+    "japa": "^2.0.10",
     "japa-cli": "^1.0.1",
     "rollup": "^0.52.0",
     "rollup-plugin-uglify": "^4.0.0",
