@@ -19,6 +19,14 @@
 |
 */
 
+function uncurryThis (fn) {
+  return function () {
+    return Function.call.apply(fn, arguments)
+  }
+}
+
+const hasOwnProperty = uncurryThis(Object.prototype.hasOwnProperty)
+
 function isObj (obj) {
   return obj !== null && typeof (obj) === 'object'
 }
@@ -41,7 +49,7 @@ function prop (obj, path) {
   var pathArr = path.split('.')
   for (var i = 0; i < pathArr.length; i++) {
     var p = pathArr[i]
-    obj = obj.hasOwnProperty(p) ? obj[p] : null
+    obj = hasOwnProperty(obj, p) ? obj[p] : null
     if (obj === null) {
       break
     }
