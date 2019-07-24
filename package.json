@@ -26,7 +26,7 @@
     "japa-cli": "^1.0.1",
     "rollup": "^0.52.0",
     "rollup-plugin-uglify": "^4.0.0",
-    "standard": "^10.0.3",
+    "standard": "^13.1.0",
     "uglify-es": "^3.2.0"
   },
   "directories": {
