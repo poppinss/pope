@@ -5,6 +5,7 @@
   "main": "dist/pope.js",
   "module": "dist/pope.es.js",
   "browser": "dist/pope.browser.js",
+  "files": ["dist"],
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "lint": "standard index.js test/*",
