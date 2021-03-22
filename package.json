@@ -6,6 +6,7 @@
   "module": "dist/pope.es.js",
   "browser": "dist/pope.browser.js",
   "scripts": {
+    "build": "rollup -c rollup.config.js",
     "lint": "standard index.js test/*",
     "pretest": "npm run lint",
     "test": "node test/pope.spec.js"
