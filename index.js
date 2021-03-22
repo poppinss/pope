@@ -46,9 +46,9 @@ function prop (obj, path) {
   if (!isObj(obj) || typeof path !== 'string') {
     return obj
   }
-  var pathArr = path.split('.')
-  for (var i = 0; i < pathArr.length; i++) {
-    var p = pathArr[i]
+  const pathArr = path.split('.')
+  for (let i = 0; i < pathArr.length; i++) {
+    const p = pathArr[i]
     obj = hasOwnProperty(obj, p) ? obj[p] : null
     if (obj === null) {
       break
@@ -71,18 +71,18 @@ function prop (obj, path) {
 function pope (string, data, options) {
   options = options || { skipUndefined: false, throwOnUndefined: false }
 
-  var regex = /{{2}(.+?)}{2}/g
-  var result
-  var formattedString = string
+  const regex = /{{2}(.+?)}{2}/g
+  let result
+  let formattedString = string
 
   while ((result = regex.exec(string)) !== null) {
-    var item = result[1].trim()
+    const item = result[1].trim()
     if (item) {
-      var value = prop(data, item)
+      const value = prop(data, item)
       if (value !== undefined && value !== null) {
         formattedString = formattedString.replace(result[0], value)
       } else if (options.throwOnUndefined) {
-        var error = new Error('Missing value for ' + result[0])
+        const error = new Error('Missing value for ' + result[0])
         error.key = item
         error.code = 'E_MISSING_KEY'
         throw error

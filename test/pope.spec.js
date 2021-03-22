@@ -14,17 +14,17 @@ const { pope, prop } = require('../dist/pope')
 
 test.group('pope', function () {
   test('should fetch properties from a given object', (assert) => {
-    const name = prop({name: 'virk'}, 'name')
+    const name = prop({ name: 'virk' }, 'name')
     assert.equal(name, 'virk')
   })
 
   test('should fetch nested properties from a given object', (assert) => {
-    const name = prop({profile: {name: 'virk'}}, 'profile.name')
+    const name = prop({ profile: { name: 'virk' } }, 'profile.name')
     assert.equal(name, 'virk')
   })
 
   test('should fetch nested properties from a given object using array index', (assert) => {
-    const name = prop({users: ['virk', 'nikk']}, 'users.1')
+    const name = prop({ users: ['virk', 'nikk'] }, 'users.1')
     assert.equal(name, 'nikk')
   })
 
@@ -34,17 +34,17 @@ test.group('pope', function () {
   })
 
   test('should parse a template and replace mustache like placeholders', (assert) => {
-    const template = pope('Hello {{name}}', {name: 'virk'})
+    const template = pope('Hello {{name}}', { name: 'virk' })
     assert.equal(template, 'Hello virk')
   })
 
   test('should parse a template and replace multiple mustache like placeholders', (assert) => {
-    const template = pope('Hello {{name}}, your age seems to be {{age}}', {name: 'virk', age: 22})
+    const template = pope('Hello {{name}}, your age seems to be {{age}}', { name: 'virk', age: 22 })
     assert.equal(template, 'Hello virk, your age seems to be 22')
   })
 
   test('should parse a template and ignore whitespaces inside placeholders', (assert) => {
-    const template = pope('Hello {{ name }}', {name: 'virk'})
+    const template = pope('Hello {{ name }}', { name: 'virk' })
     assert.equal(template, 'Hello virk')
   })
 
@@ -70,7 +70,7 @@ test.group('pope', function () {
 
   test('work fine when has special chars in placeholders', (assert) => {
     assert.equal(pope('Hello {{ user_name }}', { user_name: 'virk' }).trim(), 'Hello virk')
-    assert.equal(pope('Hello {{ $user_name }}', { '$user_name': 'virk' }).trim(), 'Hello virk')
+    assert.equal(pope('Hello {{ $user_name }}', { $user_name: 'virk' }).trim(), 'Hello virk')
   })
 
   test('skip undefined', (assert) => {
@@ -105,7 +105,7 @@ test.group('pope', function () {
   })
 
   test('should replace a value whose value is zero', (assert) => {
-    const template = pope('Zero value {{index}}', {index: 0})
+    const template = pope('Zero value {{index}}', { index: 0 })
     assert.equal(template, 'Zero value 0')
   })
 
